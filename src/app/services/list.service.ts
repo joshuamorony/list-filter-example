@@ -55,6 +55,10 @@ export class ListService {
     return this.labelFilter$;
   }
 
+  getLabelFilterValues(): Label[] {
+    return this.labelFilter$.value;
+  }
+
   addLabelFilter(label: Label): void {
     // Get the current filter values
     const currentLabels = this.labelFilter$.value;
@@ -72,5 +76,10 @@ export class ListService {
     this.labelFilter$.next(
       currentLabels.filter((labelToCheck) => labelToCheck !== label)
     );
+  }
+
+  setLabelFilter(labels: Label[]): void {
+    // Set labels to the set of labels supplied
+    this.labelFilter$.next(labels);
   }
 }

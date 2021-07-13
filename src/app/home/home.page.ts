@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Items, Label } from '../interfaces/items';
 import { ListService } from '../services/list.service';
+
+import { FilterPage } from '../filter/filter.page';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +20,10 @@ export class HomePage implements OnInit {
   private items$: Observable<Items[]>;
   private labelFilter$: Observable<Label[]>;
 
-  constructor(private listService: ListService) {}
+  constructor(
+    private listService: ListService,
+    private popoverController: PopoverController
+  ) {}
 
   ngOnInit() {
     this.items$ = this.listService.getItems();
@@ -31,5 +37,13 @@ export class HomePage implements OnInit {
         items.filter((item) => filter.includes(item.label))
       )
     );
+  }
+
+  async presentPopover() {
+    const popover = await this.popoverController.create({
+      component: FilterPage,
+    });
+
+    popover.present();
   }
 }

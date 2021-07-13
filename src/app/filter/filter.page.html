@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Filter</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="filterForm">
+    <ion-item>
+      <ion-label>feat</ion-label>
+      <ion-checkbox formControlName="feat"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>bug</ion-label>
+      <ion-checkbox formControlName="bug"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>chore</ion-label>
+      <ion-checkbox formControlName="chore"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>docs</ion-label>
+      <ion-checkbox formControlName="docs"></ion-checkbox>
+    </ion-item>
+  </form>
+</ion-content>
