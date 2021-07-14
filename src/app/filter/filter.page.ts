@@ -24,14 +24,16 @@ export class FilterPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     // React to any changes in the filter state
-    this.listService.getLabelFilter().subscribe((labels: string[]) => {
-      for (const key of Object.keys(this.filterForm.controls)) {
-        this.filterForm.controls[key].setValue(
-          labels.includes(key) ? true : false,
-          { emitEvent: false }
-        );
-      }
-    });
+    this.labelFilterSubscription = this.listService
+      .getLabelFilter()
+      .subscribe((labels: string[]) => {
+        for (const key of Object.keys(this.filterForm.controls)) {
+          this.filterForm.controls[key].setValue(
+            labels.includes(key) ? true : false,
+            { emitEvent: false }
+          );
+        }
+      });
 
     // Update filter to reflect new state when user changes it
     this.valueChangesSubscription = this.filterForm.valueChanges.subscribe(
